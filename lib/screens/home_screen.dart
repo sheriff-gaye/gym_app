@@ -1,7 +1,8 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:gym_app/colors.dart' as color;
+import 'package:gym_app/screens/video_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -12,9 +13,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List info = [];
-  _initData() {
-    DefaultAssetBundle.of(context).loadString("json/info.json").then((value) {
-      info = json.decode(value);
+  _initData() async {
+    await DefaultAssetBundle.of(context).loadString("json/info.json").then((value) {
+      setState(() {
+        info = json.decode(value);
+      });
     });
   }
 
@@ -73,10 +76,15 @@ class _HomePageState extends State<HomePage> {
                   const SizedBox(
                     width: 5,
                   ),
-                  Icon(
-                    Icons.arrow_forward,
-                    size: 20,
-                    color: color.AppColor.homePageIcons,
+                  InkWell(
+                    onTap: () {
+                      Get.to(() => const VideoApp());
+                    },
+                    child: Icon(
+                      Icons.arrow_forward,
+                      size: 20,
+                      color: color.AppColor.homePageIcons,
+                    ),
                   )
                 ],
               ),
