@@ -78,7 +78,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   InkWell(
                     onTap: () {
-                      Get.to(() => const VideoApp());
+                      Get.to(() => const VideoInfo());
                     },
                     child: Icon(
                       Icons.arrow_forward,
